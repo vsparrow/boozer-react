@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CocktailsContainer from './CocktailsContainer'
 class App extends Component {
@@ -26,11 +25,16 @@ class App extends Component {
     console.log(this.state.selectedCocktail);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-          <CocktailsContainer fetchCocktails={this.fetchCocktails} cocktails={this.state.cocktails} selectCocktail={this.selectCocktail}/>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-3">
+              <CocktailsContainer fetchCocktails={this.fetchCocktails} cocktails={this.state.cocktails} selectCocktail={this.selectCocktail}/>
+            </div>
+            <div className="col-md-5">
+
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
