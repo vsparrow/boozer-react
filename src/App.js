@@ -5,25 +5,43 @@ import SelectedCocktail from './SelectedCocktail'
 class App extends Component {
   constructor(){
       super()
-      this.state={cocktails: [], selectedCocktail: null}
+      this.state={cocktails: [], selectedCocktail: null, proportions: null}
   }
   //////////////////////////////////////////////////////////////////////////////CALLBACKS
   fetchCocktails = (cocktails)=>{                                               //send to CocktailsContainer for callback
     this.setState({cocktails: cocktails})
   }
 
+  fetchCocktail = ()=>{                                                         //get details for single cocktail
+    // console.log(this.state.selectedCocktail.id);
+    let id = this.state.selectedCocktail.id
+    let url = 'http://127.0.0.1:3000/api/v1/cocktails/' + id
+    // console.log(url);
+    fetch(url)
+    .then(res=>res.json())
+    // .then(json => console.log(json))
+    // .then(json=>this.setProportion(json))
+    .then(json => this.setState({proportions: json["proportions"]}))
+  }
+  //
+  // setProportion = (obj)=>{
+  //   console.log(obj.proportions);
+  //   // this.setState(proportions:
+  // }
+
   selectCocktail = (event)=>{
     // console.log(event.target.id);
     // let cocktail = this.state.cocktails[event.target.id]
     let cocktail = this.state.cocktails.filter((c)=>{return c.name === event.target.id})[0]//[event.target.id]
     // console.log(cocktail);
-    this.setState({selectedCocktail: cocktail})
+    this.setState({selectedCocktail: cocktail},()=>{ this.fetchCocktail()})
   }
 
   render() {
     // console.log(this.state.cocktails);
     // console.log(this.state.cocktails.length);
-    console.log(!!this.state.selectedCocktail);
+    // console.log(!!this.state.selectedCocktail);
+    console.log(this.state.proportions);
     return (
       <div className="App">
         <div className="container-fluid">
