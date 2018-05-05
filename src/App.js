@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import CocktailsContainer from './CocktailsContainer'
+import SelectedCocktail from './SelectedCocktail'
 class App extends Component {
   constructor(){
       super()
@@ -22,7 +23,7 @@ class App extends Component {
   render() {
     // console.log(this.state.cocktails);
     // console.log(this.state.cocktails.length);
-    console.log(this.state.selectedCocktail);
+    console.log(!!this.state.selectedCocktail);
     return (
       <div className="App">
         <div className="container-fluid">
@@ -31,7 +32,7 @@ class App extends Component {
               <CocktailsContainer fetchCocktails={this.fetchCocktails} cocktails={this.state.cocktails} selectCocktail={this.selectCocktail}/>
             </div>
             <div className="col-md-5">
-
+              {this.state.selectedCocktail ? <SelectedCocktail selectedCocktail={this.state.selectedCocktail}/> : null}
             </div>
           </div>
         </div>
