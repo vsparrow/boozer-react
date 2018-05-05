@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 class CocktailsContainer extends Component {
   componentDidMount=()=>{
-    // console.log("hi");
     const url = 'http://127.0.0.1:3000/api/v1/cocktails'
     fetch(url)
     .then(res=>res.json())
-    .then(json=>console.log(json))
+    // .then(json=>console.log(json))
+    .then(json=>this.props.fetchCocktails(json))
   }
 
   render() {

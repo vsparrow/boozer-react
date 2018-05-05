@@ -3,14 +3,25 @@ import logo from './logo.svg';
 import './App.css';
 import CocktailsContainer from './CocktailsContainer'
 class App extends Component {
+  constructor(){
+      super()
+      this.state={cocktails: []}
+  }
+  //////////////////////////////////////////////////////////////////////////////CALLBACKS
+  fetchCocktails = (cocktails)=>{                                               //send to CocktailsContainer for callback
+    this.setState({cocktails: cocktails})
+  }
+
   render() {
+    console.log(this.state.cocktails);
+    console.log(this.state.cocktails.length);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-          <CocktailsContainer />
+          <CocktailsContainer fetchCocktails={this.fetchCocktails}/>
       </div>
     );
   }
