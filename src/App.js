@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import CocktailsContainer from './CocktailsContainer'
 import SelectedCocktail from './SelectedCocktail'
+import CreateCocktail from './CreateCocktail'
 class App extends Component {
   constructor(){
       super()
@@ -25,6 +26,10 @@ class App extends Component {
     this.setState({selectedCocktail: cocktail},()=>{ this.fetchCocktail()})
   }
 
+  addNewCocktail = ()=>{
+    console.log("callback success");
+  }
+
   render() {
     return (
       <div className="App">
@@ -35,6 +40,9 @@ class App extends Component {
             </div>
             <div className="col-md-5">
               {this.state.selectedCocktail ? <SelectedCocktail selectedCocktail={this.state.selectedCocktail} proportions={this.state.proportions} /> : null}
+            </div>
+            <div className="col-md-4">
+              <CreateCocktail addNewCocktail={this.addNewCocktail} />
             </div>
           </div>
         </div>
