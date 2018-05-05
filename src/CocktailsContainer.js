@@ -13,7 +13,7 @@ class CocktailsContainer extends Component {
   // }
 
   render() {
-    let cocktailLis = this.props.cocktails.map((c,index)=><li key={index} id={c.id}>{c.name}</li>)
+    let cocktailLis = this.props.cocktails.map((c,index)=><li key={index} id={c.name}>{c.name}</li>)
     return (
       <div className="CocktailsContainer" onClick={this.props.selectCocktail}>
         {cocktailLis}

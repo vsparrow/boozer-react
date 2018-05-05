@@ -13,9 +13,10 @@ class App extends Component {
   }
 
   selectCocktail = (event)=>{
-    // console.log(event.target.id);
-    let cocktail = this.state.cocktails[event.target.id]
-    // console.log(cocktail);
+    console.log(event.target.id);
+    // let cocktail = this.state.cocktails[event.target.id]
+    let cocktail = this.state.cocktails.filter((c)=>{return c.name === event.target.id})[0]//[event.target.id]
+    console.log(cocktail);
     this.setState({selectedCocktail: cocktail})
   }
 
