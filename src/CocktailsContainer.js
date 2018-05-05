@@ -8,12 +8,15 @@ class CocktailsContainer extends Component {
     .then(json=>this.props.fetchCocktails(json))
   }
 
+  // selectCocktail = (event)=>{
+  //   console.log(event.target.id);
+  // }
+
   render() {
-
+    let cocktailLis = this.props.cocktails.map((c,index)=><li key={index} id={c.id}>{c.name}</li>)
     return (
-      <div className="CocktailsContainer">
-        HI
-
+      <div className="CocktailsContainer" onClick={this.props.selectCocktail}>
+        {cocktailLis}
       </div>
     );
   }

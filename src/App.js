@@ -5,23 +5,31 @@ import CocktailsContainer from './CocktailsContainer'
 class App extends Component {
   constructor(){
       super()
-      this.state={cocktails: []}
+      this.state={cocktails: [], selectedCocktail: null}
   }
   //////////////////////////////////////////////////////////////////////////////CALLBACKS
   fetchCocktails = (cocktails)=>{                                               //send to CocktailsContainer for callback
     this.setState({cocktails: cocktails})
   }
 
+  selectCocktail = (event)=>{
+    // console.log(event.target.id);
+    let cocktail = this.state.cocktails[event.target.id]
+    // console.log(cocktail);
+    this.setState({selectedCocktail: cocktail})
+  }
+
   render() {
     console.log(this.state.cocktails);
     console.log(this.state.cocktails.length);
+    console.log(this.state.selectedCocktail);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-          <CocktailsContainer fetchCocktails={this.fetchCocktails}/>
+          <CocktailsContainer fetchCocktails={this.fetchCocktails} cocktails={this.state.cocktails} selectCocktail={this.selectCocktail}/>
       </div>
     );
   }

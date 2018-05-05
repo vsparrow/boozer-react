@@ -21,6 +21,9 @@
 .App-intro {
   font-size: large;
 }
+.CocktailsContainer{
+  text-align: left;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
