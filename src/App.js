@@ -5,7 +5,7 @@ import SelectedCocktail from './SelectedCocktail'
 class App extends Component {
   constructor(){
       super()
-      this.state={cocktails: [], selectedCocktail: null, proportions: null}
+      this.state={cocktails: [], selectedCocktail: null, proportions: []}
   }
   //////////////////////////////////////////////////////////////////////////////CALLBACKS
   fetchCocktails = (cocktails)=>{                                               //send to CocktailsContainer for callback
@@ -50,7 +50,7 @@ class App extends Component {
               <CocktailsContainer fetchCocktails={this.fetchCocktails} cocktails={this.state.cocktails} selectCocktail={this.selectCocktail}/>
             </div>
             <div className="col-md-5">
-              {this.state.selectedCocktail ? <SelectedCocktail selectedCocktail={this.state.selectedCocktail}/> : null}
+              {this.state.selectedCocktail ? <SelectedCocktail selectedCocktail={this.state.selectedCocktail} proportions={this.state.proportions} /> : null}
             </div>
           </div>
         </div>
