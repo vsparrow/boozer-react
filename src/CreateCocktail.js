@@ -8,24 +8,40 @@ class CreateCocktail extends Component {
 
   addIngredientInput = ()=>{  //function to add inputs for ingredients
     let ingredients = [...this.state.ingredients]
-    ingredients.push("")
+    ingredients.push([[""],[""]])
     this.setState({ingredients: ingredients})
   }
 
-  handleChange = ()=>{ console.log("hi")}
+  // handleChange = ()=>{ console.log("hi")}
   ingredients = ()=>{
     return  this.state.ingredients.map((el,index)=>{
       return      <div key={index}>
-                    <input type="text" value={el[0]} placeholder="Ingredient name" onChange={this.handleChange}/>
-                    <input type="text" value={el[1]} placeholder="Quantity" onChange={this.handleChange}/>
+                    <input type="text" index={index} subindex="0" value={el[0]} placeholder="Ingredient name" onChange={this.ingredientsOnChange}/>
+                    <input type="text" index={index} subindex="1" value={el[1]} placeholder="Quantity" onChange={this.ingredientsOnChange}/>
                   </div>
     })
   }
   // el.map((subel)=>{})
-
+  ingredientsOnChange = (event)=>{
+    // const event = e;
+    // const target = e.target
+    // console.log(event);
+    // console.log(target);
+    // event.persist()
+    // console.log(event);
+    // console.log(event.target.getAttribute("index"));
+    // console.log(event.target.getAttribute("subindex"));
+    let value = event.target.value
+    let index = event.target.getAttribute("index")
+    let subindex = event.target.getAttribute("subindex")
+    let ingredients = [...this.state.ingredients]
+    ingredients[index][subindex] = value
+    this.setState({ingredients: ingredients})
+  }
 
   render() {
     // console.log(this.props);
+    console.log(this.state.ingredients);
     return (
       <div className="CreateCocktail container" >
         <h2>Create A Cocktail</h2>
