@@ -12,6 +12,8 @@ class CreateCocktail extends Component {
     this.setState({ingredients: ingredients})
   }
 
+
+
   // handleChange = ()=>{ console.log("hi")}
   ingredients = ()=>{
     return  this.state.ingredients.map((el,index)=>{
@@ -38,6 +40,18 @@ class CreateCocktail extends Component {
     this.setState({[statetype]: value})
   }//inputOnChange
 
+  sendbackCocktail = ()=>{                                                      //only local cocktail updated not the api no routes in api
+    console.log("sendbackCocktail");
+    // this.props.addNewCocktail
+    let cocktail = {
+      name: this.state.name,
+      description: this.state.description,
+      instructions: this.state.instructions,
+      proportions: this.state.ingredients
+    }
+    this.props.addNewCocktail(cocktail)
+  }
+
   render() {
     // console.log(this.props);
     // console.log(this.state.ingredients);
@@ -60,7 +74,7 @@ class CreateCocktail extends Component {
         </div>
         <div className="CreateCocktailButton">
           <br/>
-          <button onClick={this.props.addNewCocktail} type="button" className="btn btn-primary btn-lg">Create Cocktail</button>
+          <button onClick={this.sendbackCocktail} type="button" className="btn btn-primary btn-lg">Create Cocktail</button>
         </div>
 
       </div>

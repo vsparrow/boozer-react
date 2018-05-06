@@ -26,8 +26,12 @@ class App extends Component {
     this.setState({selectedCocktail: cocktail},()=>{ this.fetchCocktail()})
   }
 
-  addNewCocktail = ()=>{
+  addNewCocktail = (drinkObj={})=>{
     console.log("callback success");
+    console.log(drinkObj);
+    let cocktails = [...this.state.cocktails]
+    cocktails.push(drinkObj)
+    this.setState({cocktails: cocktails})
   }
 
   render() {
