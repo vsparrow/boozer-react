@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 class CreateCocktail extends Component {
   constructor(){
     super()
-    this.state={ingredients: ["val1"]}
+    // this.state={ingredients: [["iname","qty"]]}
+    this.state={ingredients: []}
   }
 
   addIngredientInput = ()=>{  //function to add inputs for ingredients
@@ -14,9 +15,14 @@ class CreateCocktail extends Component {
   handleChange = ()=>{ console.log("hi")}
   ingredients = ()=>{
     return  this.state.ingredients.map((el,index)=>{
-      return       <div key={index}><input type="text" value={el} placeholder="some ingredients" onChange={this.handleChange}/></div>
+      return      <div key={index}>
+                    <input type="text" value={el[0]} placeholder="Ingredient name" onChange={this.handleChange}/>
+                    <input type="text" value={el[1]} placeholder="Quantity" onChange={this.handleChange}/>
+                  </div>
     })
   }
+  // el.map((subel)=>{})
+
 
   render() {
     // console.log(this.props);
