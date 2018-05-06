@@ -1,5 +1,22 @@
 import React, { Component } from 'react';
 class CreateCocktail extends Component {
+  constructor(){
+    super()
+    this.state={ingredients: ["val1"]}
+  }
+
+  addIngredientInput = ()=>{  //function to add inputs for ingredients
+    let ingredients = [...this.state.ingredients]
+    ingredients.push("")
+    this.setState({ingredients: ingredients})
+  }
+
+  handleChange = ()=>{ console.log("hi")}
+  ingredients = ()=>{
+    return  this.state.ingredients.map((el,index)=>{
+      return       <div key={index}><input type="text" value={el} placeholder="some ingredients" onChange={this.handleChange}/></div>
+    })
+  }
 
   render() {
     // console.log(this.props);
@@ -15,7 +32,9 @@ class CreateCocktail extends Component {
 
         <h3>Proportions</h3>
         <div className="NewIngredients">
-
+          {this.ingredients()}
+          <br/>
+          <button onClick={this.addIngredientInput} type="button" className="btn btn-primary btn-md">Add Ingredient</button>
         </div>
         <div className="CreateCocktailButton">
           <br/>
