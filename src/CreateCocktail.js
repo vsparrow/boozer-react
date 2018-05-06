@@ -3,7 +3,7 @@ class CreateCocktail extends Component {
   constructor(){
     super()
     // this.state={ingredients: [["iname","qty"]]}
-    this.state={ingredients: []}
+    this.state={ingredients: [], name: "", description: "", instructions: ""}
   }
 
   addIngredientInput = ()=>{  //function to add inputs for ingredients
@@ -20,15 +20,8 @@ class CreateCocktail extends Component {
                     <input type="text" index={index} subindex="1" value={el[1]} placeholder="Quantity" onChange={this.ingredientsOnChange}/>
                   </div>
     })
-  }
-  // el.map((subel)=>{})
-  ingredientsOnChange = (event)=>{
-    // const event = e;
-    // const target = e.target
-    // console.log(event);
-    // console.log(target);
-    // event.persist()
-    // console.log(event);
+  }//ingredients
+  ingredientsOnChange = (event)=>{  //updates this.state.ingredients with text written in new inputs for Ingredient/Quanity
     // console.log(event.target.getAttribute("index"));
     // console.log(event.target.getAttribute("subindex"));
     let value = event.target.value
@@ -37,20 +30,27 @@ class CreateCocktail extends Component {
     let ingredients = [...this.state.ingredients]
     ingredients[index][subindex] = value
     this.setState({ingredients: ingredients})
-  }
+  }//ingredientsOnChange
+  inputOnChange=(event)=>{ //standard inputs : name,description, instructions
+    // console.log(event.target.getAttribute("data-statetype"));
+    let statetype = event.target.getAttribute("data-statetype")
+    let value = event.target.value
+    this.setState({[statetype]: value})
+  }//inputOnChange
 
   render() {
     // console.log(this.props);
-    console.log(this.state.ingredients);
+    // console.log(this.state.ingredients);
+    console.log(this.state);
     return (
       <div className="CreateCocktail container" >
         <h2>Create A Cocktail</h2>
         Name<br/>
-        <input placeholder=""/><br/>
+        <input placeholder="" onChange={this.inputOnChange} data-statetype="name"/><br/>
         Description
-        <input className="form-control input-lg" placeholder=""/>
+        <input className="form-control input-lg" placeholder="" onChange={this.inputOnChange} data-statetype="description"/>
         Instructions
-        <input className="form-control input-lg" placeholder=""/><br/>
+        <input className="form-control input-lg" placeholder="" onChange={this.inputOnChange} data-statetype="instructions"/><br/>
 
         <h3>Proportions</h3>
         <div className="NewIngredients">
